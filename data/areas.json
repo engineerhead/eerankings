@@ -1,0 +1,469 @@
+{
+  "_comment": "EE research areas and the flagship venues counted for each. 'dblp' entries are DBLP key prefixes (e.g. conf/isscc matches keys conf/isscc/...). Conference records whose booktitle matches the global exclude pattern (workshops, companions, ...) are ignored. Areas with default=false (EE-adjacent fields dominated by CS) are unselected on first load.",
+  "exclude_booktitle": "(?i)workshop|companion|adjunct|doctoral|demo|poster|tutorial|satellite",
+  "exclude_title": "(?i)^(editorial|guest editorial|erratum|errata|corrections?( to)?|correction to|front cover|back cover|table of contents|in memoriam|reviewers|list of reviewers|introduction to the special|editor'?s note|ieee .* society information|information for authors|call for papers|retraction)\\b|\\(panel( session)?\\)|^(panel|keynote|invited talk)\\b",
+  "groups": [
+    {
+      "id": "circuits",
+      "name": "Circuits, Devices & Systems",
+      "areas": [
+        {
+          "id": "ssc",
+          "name": "Solid-state circuits",
+          "venues": [
+            {
+              "name": "ISSCC",
+              "dblp": [
+                "conf/isscc"
+              ]
+            },
+            {
+              "name": "VLSI Circuits",
+              "dblp": [
+                "conf/vlsic"
+              ]
+            },
+            {
+              "name": "IEEE JSSC",
+              "dblp": [
+                "journals/jssc"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "devices",
+          "name": "Devices & photonics",
+          "venues": [
+            {
+              "name": "VLSI Technology",
+              "dblp": [
+                "conf/vlsit"
+              ]
+            },
+            {
+              "name": "OFC",
+              "dblp": [
+                "conf/ofc"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "eda",
+          "name": "Design automation",
+          "venues": [
+            {
+              "name": "DAC",
+              "dblp": [
+                "conf/dac"
+              ]
+            },
+            {
+              "name": "ICCAD",
+              "dblp": [
+                "conf/iccad"
+              ]
+            },
+            {
+              "name": "IEEE TCAD",
+              "dblp": [
+                "journals/tcad"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "arch",
+          "name": "Computer architecture",
+          "venues": [
+            {
+              "name": "ISCA",
+              "dblp": [
+                "conf/isca"
+              ]
+            },
+            {
+              "name": "MICRO",
+              "dblp": [
+                "conf/micro"
+              ]
+            },
+            {
+              "name": "HPCA",
+              "dblp": [
+                "conf/hpca"
+              ]
+            },
+            {
+              "name": "ASPLOS",
+              "dblp": [
+                "conf/asplos"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "biocas",
+          "name": "Biomedical circuits & devices",
+          "venues": [
+            {
+              "name": "IEEE TBioCAS",
+              "dblp": [
+                "journals/tbcas"
+              ]
+            },
+            {
+              "name": "IEEE TBME",
+              "dblp": [
+                "journals/tbe"
+              ]
+            },
+            {
+              "name": "IEEE TMI",
+              "dblp": [
+                "journals/tmi"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "embedded",
+          "name": "Embedded & real-time",
+          "venues": [
+            {
+              "name": "EMSOFT",
+              "dblp": [
+                "conf/emsoft"
+              ]
+            },
+            {
+              "name": "RTAS",
+              "dblp": [
+                "conf/rtas"
+              ]
+            },
+            {
+              "name": "RTSS",
+              "dblp": [
+                "conf/rtss"
+              ]
+            }
+          ],
+          "default": true
+        }
+      ]
+    },
+    {
+      "id": "signals",
+      "name": "Signals, Information & Communications",
+      "areas": [
+        {
+          "id": "sp",
+          "name": "Signal processing",
+          "venues": [
+            {
+              "name": "ICASSP",
+              "dblp": [
+                "conf/icassp"
+              ]
+            },
+            {
+              "name": "IEEE TSP",
+              "dblp": [
+                "journals/tsp"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "it",
+          "name": "Information theory",
+          "venues": [
+            {
+              "name": "ISIT",
+              "dblp": [
+                "conf/isit"
+              ]
+            },
+            {
+              "name": "IEEE Trans. Inf. Theory",
+              "dblp": [
+                "journals/tit"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "comm",
+          "name": "Wireless & communications",
+          "venues": [
+            {
+              "name": "IEEE JSAC",
+              "dblp": [
+                "journals/jsac"
+              ]
+            },
+            {
+              "name": "IEEE TWC",
+              "dblp": [
+                "journals/twc"
+              ]
+            },
+            {
+              "name": "IEEE TCOM",
+              "dblp": [
+                "journals/tcom"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "net",
+          "name": "Networking & mobile",
+          "venues": [
+            {
+              "name": "SIGCOMM",
+              "dblp": [
+                "conf/sigcomm"
+              ]
+            },
+            {
+              "name": "NSDI",
+              "dblp": [
+                "conf/nsdi"
+              ]
+            },
+            {
+              "name": "INFOCOM",
+              "dblp": [
+                "conf/infocom"
+              ]
+            },
+            {
+              "name": "MobiCom",
+              "dblp": [
+                "conf/mobicom"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "sensing",
+          "name": "Sensing & IoT",
+          "venues": [
+            {
+              "name": "SenSys",
+              "dblp": [
+                "conf/sensys"
+              ]
+            },
+            {
+              "name": "IPSN",
+              "dblp": [
+                "conf/ipsn"
+              ]
+            },
+            {
+              "name": "MobiSys",
+              "dblp": [
+                "conf/mobisys"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "vision",
+          "name": "Computer vision & imaging",
+          "venues": [
+            {
+              "name": "CVPR",
+              "dblp": [
+                "conf/cvpr"
+              ]
+            },
+            {
+              "name": "ICCV",
+              "dblp": [
+                "conf/iccv"
+              ]
+            },
+            {
+              "name": "ECCV",
+              "dblp": [
+                "conf/eccv"
+              ]
+            },
+            {
+              "name": "IEEE TIP",
+              "dblp": [
+                "journals/tip"
+              ]
+            }
+          ],
+          "default": false
+        },
+        {
+          "id": "ml",
+          "name": "Machine learning",
+          "venues": [
+            {
+              "name": "NeurIPS",
+              "dblp": [
+                "conf/nips"
+              ]
+            },
+            {
+              "name": "ICML",
+              "dblp": [
+                "conf/icml"
+              ]
+            },
+            {
+              "name": "ICLR",
+              "dblp": [
+                "conf/iclr"
+              ]
+            }
+          ],
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "control",
+      "name": "Control, Robotics & Energy",
+      "areas": [
+        {
+          "id": "control",
+          "name": "Control systems",
+          "venues": [
+            {
+              "name": "CDC",
+              "dblp": [
+                "conf/cdc"
+              ]
+            },
+            {
+              "name": "ACC",
+              "dblp": [
+                "conf/amcc"
+              ]
+            },
+            {
+              "name": "IEEE TAC",
+              "dblp": [
+                "journals/tac"
+              ]
+            },
+            {
+              "name": "Automatica",
+              "dblp": [
+                "journals/automatica"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "robotics",
+          "name": "Robotics",
+          "venues": [
+            {
+              "name": "ICRA",
+              "dblp": [
+                "conf/icra"
+              ]
+            },
+            {
+              "name": "IROS",
+              "dblp": [
+                "conf/iros"
+              ]
+            },
+            {
+              "name": "RSS",
+              "dblp": [
+                "conf/rss"
+              ]
+            }
+          ],
+          "default": false
+        },
+        {
+          "id": "power",
+          "name": "Power & energy systems",
+          "venues": [
+            {
+              "name": "IEEE Trans. Smart Grid",
+              "dblp": [
+                "journals/tsg"
+              ]
+            },
+            {
+              "name": "IEEE Trans. Industrial Electronics",
+              "dblp": [
+                "journals/tie"
+              ]
+            },
+            {
+              "name": "IEEE SmartGridComm",
+              "dblp": [
+                "conf/smartgridcomm"
+              ]
+            },
+            {
+              "name": "ACM e-Energy",
+              "dblp": [
+                "conf/eenergy"
+              ]
+            }
+          ],
+          "default": true
+        },
+        {
+          "id": "sec",
+          "name": "Security & hardware security",
+          "venues": [
+            {
+              "name": "IEEE S&P",
+              "dblp": [
+                "conf/sp"
+              ]
+            },
+            {
+              "name": "USENIX Security",
+              "dblp": [
+                "conf/uss"
+              ]
+            },
+            {
+              "name": "ACM CCS",
+              "dblp": [
+                "conf/ccs"
+              ]
+            },
+            {
+              "name": "TCHES / CHES",
+              "dblp": [
+                "journals/tches",
+                "conf/ches"
+              ]
+            }
+          ],
+          "default": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EE Rankings</title>
+  <meta name="description" content="Metrics-based ranking of electrical engineering research institutions, built from publications in top EE venues.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d4ed8'/%3E%3Cpath d='M18 4 8 18h7l-2 10 11-15h-7z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6"/><path d="M18 4 8 18h7l-2 10 11-15h-7z"/></svg>
+        <span>EE Rankings</span>
+      </a>
+      <nav>
+        <a href="#" data-view="rank" class="active">Rankings</a>
+        <a href="#about" data-view="about">About &amp; FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="view-rank">
+    <p class="lede">Electrical engineering research institutions ranked by publications in the most selective venues
+      of each area. The ranking is entirely metrics-based, and it updates live as you change the filters.</p>
+
+    <section class="controls" aria-label="Filters">
+      <label>From
+        <select id="from"></select>
+      </label>
+      <label>To
+        <select id="to"></select>
+      </label>
+      <label>Region
+        <select id="region">
+          <option value="world">World</option>
+          <option value="usa">USA</option>
+          <option value="northamerica">North America</option>
+          <option value="canada">Canada</option>
+          <option value="europe">Europe</option>
+          <option value="asia">Asia</option>
+          <option value="australasia">Australasia</option>
+          <option value="southamerica">Latin America</option>
+          <option value="africa">Africa</option>
+        </select>
+      </label>
+      <label title="Which faculty are counted, based on the department listed in their DBLP affiliation">Departments
+        <select id="dept">
+          <option value="eeplus">EE/ECE + unknown</option>
+          <option value="ee">EE/ECE only</option>
+          <option value="all">All</option>
+        </select>
+      </label>
+      <label class="search">Search
+        <input id="search" type="search" placeholder="Institution or faculty" autocomplete="off">
+      </label>
+    </section>
+
+    <div class="layout">
+      <section class="ranking" aria-label="Ranking">
+        <div class="table-meta" id="table-meta">Loading data…</div>
+        <table id="ranking">
+          <thead>
+            <tr>
+              <th class="num">#</th>
+              <th>Institution</th>
+              <th class="num" title="Geometric mean of (adjusted publication count + 1) over selected areas">Score</th>
+              <th class="num" title="Faculty with at least one counted paper">Faculty</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button id="more" class="more" hidden>Show more</button>
+      </section>
+
+      <aside class="areas" aria-label="Research areas">
+        <details id="areas-details" open>
+          <summary class="areas-head">
+            <h2>Areas <span id="area-count" class="area-count"></span></h2>
+            <div class="toggles">
+              <button data-all="core" title="Core electrical engineering areas (default)">EE core</button>
+              <button data-all="on">All</button>
+              <button data-all="off">None</button>
+            </div>
+          </summary>
+          <div id="area-groups"></div>
+        </details>
+      </aside>
+    </div>
+  </main>
+
+  <main class="wrap about" id="view-about" hidden>
+    <h1>About EE Rankings</h1>
+    <p>EE Rankings is a metrics-based ranking of electrical engineering research, modeled on
+      <a href="https://csrankings.org">CSrankings</a>. Rankings come from a count of the papers faculty publish in the
+      most selective venues of each EE area, not from reputation surveys.</p>
+
+    <h2>How is the score computed?</h2>
+    <ol>
+      <li>Every paper in a counted venue gives each of its authors <em>1/(number of authors)</em> credit, so a
+        two-author paper gives each author 0.5.</li>
+      <li>An institution's count in an area is the sum of that credit over its faculty, restricted to the chosen years.</li>
+      <li>The score is the <strong>geometric mean</strong> of (count + 1) across the selected areas. This rewards
+        breadth, and no single high-volume area can dominate.</li>
+    </ol>
+
+    <h2>Why are some areas unselected by default?</h2>
+    <p>Machine learning, computer vision, robotics, and security draw many EE faculty, but computer science
+      dominates their venues. If they counted by default, the ranking would mostly reflect CS strength, so they are
+      marked <em>adjacent</em> and are off on first load. Select them, or click <em>All</em>, for a combined
+      EE + CS view.</p>
+
+    <h2>Which venues count?</h2>
+    <div id="venue-table"></div>
+
+    <h2>Where does the data come from?</h2>
+    <p>Publications come from the <a href="https://dblp.org">DBLP</a> bibliography. Affiliations come from DBLP person
+      records, which are curated by the DBLP team and in many cases come from ORCID. Every affiliation string is
+      mapped to a canonical institution and classified by department: <em>EE/ECE</em> (electrical, electronic,
+      ECE, EECS, and similar), <em>other</em> (for example computer science or mechanical engineering), or
+      <em>unspecified</em>.</p>
+
+    <h2>Who counts as faculty?</h2>
+    <p>DBLP does not record academic rank, so people are selected heuristically. A person must have a current
+      academic affiliation, at least 7 years of publishing, at least 20 DBLP publications, recent activity, and at
+      least 3 papers in counted venues. Curated corrections in <code>data/faculty-overrides.csv</code> always take
+      precedence. Some senior researchers and postdocs may be included, and some faculty may be missing. Please
+      submit corrections.</p>
+
+    <h2>Why are devices, photonics, and power electronics thin?</h2>
+    <p>Coverage is limited to venues indexed by DBLP. Several flagship EE venues are not indexed, including IEDM,
+      CLEO, APEC, IMS, and the Antennas &amp; Propagation symposium. These areas are therefore represented through the
+      indexed venues closest to them: VLSI Technology and OFC for devices and photonics, and IEEE Transactions on
+      Industrial Electronics for power electronics. Adding a venue is a one-line change in
+      <code>data/areas.json</code> once DBLP indexes it.</p>
+
+    <h2>How do I fix my entry?</h2>
+    <p>Update your affiliation on DBLP (or ORCID), or add a line to <code>data/faculty-overrides.csv</code> /
+      <code>data/institution-aliases.csv</code> and rebuild. See the README for the full pipeline.</p>
+  </main>
+
+  <footer class="wrap site-footer">
+    <span id="generated"></span>
+    <span>Data: <a href="https://dblp.org">DBLP</a> (CC0). Methodology inspired by <a href="https://csrankings.org">CSrankings</a>.</span>
+  </footer>
+
+  <script src="rank.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

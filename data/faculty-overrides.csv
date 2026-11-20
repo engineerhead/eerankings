@@ -1,0 +1,4 @@
+name,affiliation,dept,country,homepage,action
+# Curated corrections. name = exact DBLP name (with disambiguation suffix, e.g. "Wei Wang 0001").
+# action=include forces a person in (skipping the heuristic); action=exclude removes them.
+# dept is one of: ee, other, unknown. affiliation uses DBLP style: "Institution, Department, State, Country".

@@ -1,0 +1,148 @@
+variant,canonical
+# Map spelling variants of an institution to one canonical name.
+Massachusetts Institute of Technology (MIT),Massachusetts Institute of Technology
+MIT,Massachusetts Institute of Technology
+California Institute of Technology (Caltech),California Institute of Technology
+Caltech,California Institute of Technology
+University of Illinois Urbana-Champaign,University of Illinois at Urbana-Champaign
+"University of Illinois, Urbana-Champaign",University of Illinois at Urbana-Champaign
+UIUC,University of Illinois at Urbana-Champaign
+"University of Maryland, College Park",University of Maryland
+University of Maryland College Park,University of Maryland
+"University of Michigan, Ann Arbor",University of Michigan
+University of Michigan Ann Arbor,University of Michigan
+"University of Wisconsin, Madison",University of Wisconsin-Madison
+University of Wisconsin Madison,University of Wisconsin-Madison
+"University of Minnesota, Twin Cities",University of Minnesota
+"University of Colorado, Boulder",University of Colorado Boulder
+"University of Massachusetts, Amherst","University of Massachusetts, Amherst"
+"Purdue University, West Lafayette",Purdue University
+Georgia Tech,Georgia Institute of Technology
+Swiss Federal Institute of Technology in Zurich,ETH Zurich
+ETH Zürich,ETH Zurich
+Swiss Federal Institute of Technology in Lausanne,EPFL
+École Polytechnique Fédérale de Lausanne,EPFL
+Ecole Polytechnique Federale de Lausanne,EPFL
+EPFL Lausanne,EPFL
+Korea Advanced Institute of Science and Technology,KAIST
+Korea Advanced Institute of Science and Technology (KAIST),KAIST
+Technion - Israel Institute of Technology,Technion
+Technion – Israel Institute of Technology,Technion
+Technion-Israel Institute of Technology,Technion
+Israel Institute of Technology,Technion
+Technical University of Munich,Technical University of Munich
+TU Munich,Technical University of Munich
+Technische Universität München,Technical University of Munich
+Delft University of Technology,Delft University of Technology
+TU Delft,Delft University of Technology
+The Hong Kong University of Science and Technology,Hong Kong University of Science and Technology
+HKUST,Hong Kong University of Science and Technology
+The University of Hong Kong,University of Hong Kong
+The Chinese University of Hong Kong,Chinese University of Hong Kong
+The University of Texas at Austin,University of Texas at Austin
+UT Austin,University of Texas at Austin
+The University of Tokyo,University of Tokyo
+The Ohio State University,Ohio State University
+The Pennsylvania State University,Pennsylvania State University
+Penn State University,Pennsylvania State University
+NYU,New York University
+New York University Tandon School of Engineering,New York University
+Virginia Tech,Virginia Polytechnic Institute and State University
+National University of Singapore (NUS),National University of Singapore
+Nanyang Technological University (NTU),Nanyang Technological University
+Seoul National University (SNU),Seoul National University
+Indian Institute of Science (IISc),Indian Institute of Science
+"Indian Institute of Science, Bangalore",Indian Institute of Science
+University of Cambridge,University of Cambridge
+Cambridge University,University of Cambridge
+University of Oxford,University of Oxford
+Oxford University,University of Oxford
+Imperial College,Imperial College London
+KTH Royal Institute of Technology,KTH Royal Institute of Technology
+Royal Institute of Technology,KTH Royal Institute of Technology
+KTH,KTH Royal Institute of Technology
+UC Berkeley,"University of California, Berkeley"
+UCLA,"University of California, Los Angeles"
+UC San Diego,"University of California, San Diego"
+University of California at Berkeley,"University of California, Berkeley"
+University of California Berkeley,"University of California, Berkeley"
+University of California Los Angeles,"University of California, Los Angeles"
+University of California San Diego,"University of California, San Diego"
+MIT Computer Science and Artificial Intelligence Laboratory,Massachusetts Institute of Technology
+MIT CSAIL,Massachusetts Institute of Technology
+MIT Media Lab,Massachusetts Institute of Technology
+MIT Lincoln Laboratory,Massachusetts Institute of Technology
+Northeastern University - Boston Campus,Northeastern University
+University of Padova,University of Padua
+Università degli Studi di Padova,University of Padua
+University of Erlangen-Nuremberg,Friedrich-Alexander University Erlangen-Nürnberg
+Friedrich-Alexander-Universität Erlangen-Nürnberg,Friedrich-Alexander University Erlangen-Nürnberg
+FAU Erlangen-Nürnberg,Friedrich-Alexander University Erlangen-Nürnberg
+Technical University of Berlin,TU Berlin
+Technische Universität Berlin,TU Berlin
+Technical University of Darmstadt,TU Darmstadt
+Technische Universität Darmstadt,TU Darmstadt
+Technical University of Dresden,TU Dresden
+Technische Universität Dresden,TU Dresden
+Technical University of Dortmund,TU Dortmund
+Technical University of Braunschweig,TU Braunschweig
+Vienna University of Technology,TU Wien
+State University of New York at Buffalo,University at Buffalo
+"State University of New York, Buffalo",University at Buffalo
+SUNY Buffalo,University at Buffalo
+"State University of New York, Stony Brook",Stony Brook University
+State University of New York at Stony Brook,Stony Brook University
+"State University of New York, Binghamton",Binghamton University
+National Chiao Tung University,National Yang Ming Chiao Tung University
+National Yang-Ming Chiao Tung University,National Yang Ming Chiao Tung University
+Catholic University of Leuven,KU Leuven
+Katholieke Universiteit Leuven,KU Leuven
+University of Leuven,KU Leuven
+Chinese University of Hong Kong-Shenzhen,"Chinese University of Hong Kong, Shenzhen"
+Chinese University of Hong Kong (Shenzhen),"Chinese University of Hong Kong, Shenzhen"
+"The Chinese University of Hong Kong, Shenzhen","Chinese University of Hong Kong, Shenzhen"
+Harbin Institute of Technology at Shenzhen,"Harbin Institute of Technology, Shenzhen"
+Harbin Institute of Technology Shenzhen,"Harbin Institute of Technology, Shenzhen"
+Hong Kong University of Science and Technology Guangzhou,"Hong Kong University of Science and Technology, Guangzhou"
+The Hong Kong Polytechnic University,Hong Kong Polytechnic University
+The Hebrew University of Jerusalem,Hebrew University of Jerusalem
+Ben-Gurion University of the Negev,Ben-Gurion University
+University of Montreal,University of Montréal
+Université de Montréal,University of Montréal
+Tokyo Institute of Technology,Institute of Science Tokyo
+Tampere University of Technology,Tampere University
+University of Nebraska-Lincoln,"University of Nebraska, Lincoln"
+Indiana University,Indiana University Bloomington
+Ecole Polytechnique,École Polytechnique
+University of Illinois Chicago,"University of Illinois, Chicago"
+University of Illinois at Chicago,"University of Illinois, Chicago"
+University of North Carolina at Chapel Hill,"University of North Carolina, Chapel Hill"
+University of North Carolina at Charlotte,"University of North Carolina, Charlotte"
+University of Massachusetts Amherst,"University of Massachusetts, Amherst"
+University of Texas at Dallas,"University of Texas, Dallas"
+University of Texas at Arlington,"University of Texas, Arlington"
+University of Texas at San Antonio,"University of Texas, San Antonio"
+University of Texas at El Paso,"University of Texas, El Paso"
+"University of Texas, Austin",University of Texas at Austin
+University of Colorado Boulder,"University of Colorado, Boulder"
+University of Wisconsin-Madison,University of Wisconsin-Madison
+Washington University,Washington University in St. Louis
+Washington University in Saint Louis,Washington University in St. Louis
+University of Illinois,University of Illinois at Urbana-Champaign
+University of Colorado,"University of Colorado, Boulder"
+University of California Riverside Riverside,"University of California, Riverside"
+Edinburgh University,University of Edinburgh
+ETH Zurich / University of Zurich,ETH Zurich
+Sun Yat-sen University Shenzhen Campus,Sun Yat-sen University
+Paris-Saclay University,Université Paris-Saclay
+University of Paris-Saclay,Université Paris-Saclay
+University of Osaka,Osaka University
+Leibniz Universität Hannover,Leibniz University Hannover
+Khalifa University of Science and Technology,Khalifa University
+University of Paderborn,Paderborn University
+Darmstadt University of Technology,TU Darmstadt
+University of Darmstadt,TU Darmstadt
+Universitat Pompeu Fabra,Pompeu Fabra University
+New York University Abu Dhabi (NYU Abu Dhabi),New York University Abu Dhabi
+The University of Western Australia,University of Western Australia
+Heidelberg University,University of Heidelberg

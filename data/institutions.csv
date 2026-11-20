@@ -1,0 +1,5 @@
+institution,country,region,homepage
+# Optional per-institution metadata overrides. region is one of: northamerica, europe, asia, australasia, southamerica, africa.
+Australian National University,Australia,australasia,
+University of Western Australia,Australia,australasia,
+Saint-Petersburg Polytechnic University,Russia,europe,
