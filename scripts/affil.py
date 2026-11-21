@@ -24,6 +24,8 @@ COUNTRY_ALIASES = {
     "the netherlands": "Netherlands", "netherlands": "Netherlands", "holland": "Netherlands",
     "uae": "UAE", "united arab emirates": "UAE", "czechia": "Czech Republic", "czech republic": "Czech Republic",
     "russian federation": "Russia", "deutschland": "Germany", "brasil": "Brazil",
+    "méxico": "Mexico", "macedonia": "North Macedonia", "bosnia": "Bosnia and Herzegovina",
+    "kingdom of saudi arabia": "Saudi Arabia", "ksa": "Saudi Arabia", "viet nam": "Vietnam",
     "españa": "Spain", "italia": "Italy", "schweiz": "Switzerland", "suisse": "Switzerland", "österreich": "Austria", "türkiye": "Turkey", "turkiye": "Turkey",
 }
 
@@ -32,13 +34,19 @@ REGIONS = {
     "europe": ["UK", "Germany", "France", "Switzerland", "Netherlands", "Belgium", "Italy", "Spain", "Portugal",
                "Austria", "Sweden", "Norway", "Denmark", "Finland", "Iceland", "Ireland", "Poland", "Czech Republic",
                "Slovakia", "Hungary", "Romania", "Bulgaria", "Greece", "Cyprus", "Croatia", "Slovenia", "Serbia",
-               "Estonia", "Latvia", "Lithuania", "Luxembourg", "Malta", "Russia", "Ukraine", "Turkey"],
+               "Estonia", "Latvia", "Lithuania", "Luxembourg", "Malta", "Russia", "Ukraine", "Turkey",
+               "Liechtenstein", "Bosnia and Herzegovina", "Montenegro", "North Macedonia", "Albania", "Belarus",
+               "Moldova", "Monaco"],
     "asia": ["China", "Hong Kong", "Macau", "Taiwan", "Japan", "South Korea", "Singapore", "India", "Israel",
              "Saudi Arabia", "UAE", "Qatar", "Iran", "Pakistan", "Bangladesh", "Malaysia", "Thailand", "Vietnam",
-             "Indonesia", "Philippines", "Sri Lanka", "Jordan", "Lebanon", "Kuwait", "Oman", "Nepal"],
+             "Indonesia", "Philippines", "Sri Lanka", "Jordan", "Lebanon", "Kuwait", "Oman", "Nepal",
+             "Bahrain", "Brunei", "Kazakhstan", "Uzbekistan", "Iraq", "Palestine", "Mongolia", "Cambodia",
+             "Myanmar", "Armenia", "Azerbaijan", "Georgia"],
     "australasia": ["Australia", "New Zealand"],
-    "southamerica": ["Brazil", "Chile", "Argentina", "Mexico", "Colombia", "Peru", "Uruguay", "Venezuela", "Ecuador"],
-    "africa": ["South Africa", "Egypt", "Nigeria", "Morocco", "Tunisia", "Algeria", "Kenya", "Ghana", "Ethiopia"],
+    "southamerica": ["Brazil", "Chile", "Argentina", "Mexico", "Colombia", "Peru", "Uruguay", "Venezuela", "Ecuador",
+                     "Costa Rica", "Cuba", "Bolivia", "Paraguay", "Panama", "Puerto Rico", "Guatemala"],
+    "africa": ["South Africa", "Egypt", "Nigeria", "Morocco", "Tunisia", "Algeria", "Kenya", "Ghana", "Ethiopia",
+               "Cameroon", "Rwanda", "Uganda", "Tanzania", "Senegal", "Zimbabwe", "Botswana", "Mauritius"],
 }
 COUNTRY_REGION = {c: r for r, cs in REGIONS.items() for c in cs}
 
@@ -159,6 +167,29 @@ def parse_country(segments):
     return country, rest
 
 
+COUNTRY_IN_NAME_RE = re.compile(
+    r"\b(%s)\b" % "|".join(sorted((re.escape(c) for c in COUNTRY_REGION if c not in ("USA", "UK", "Georgia")),
+                                   key=len, reverse=True)), re.I)
+NAME_HINTS = [(re.compile(r"m[eé]xico", re.I), "Mexico"), (re.compile(r"\bcairo\b", re.I), "Egypt"),
+              (re.compile(r"\bkuala lumpur|malaya\b", re.I), "Malaysia"), (re.compile(r"\bbeirut|lebanese", re.I), "Lebanon"),
+              (re.compile(r"\bsarajevo\b", re.I), "Bosnia and Herzegovina"), (re.compile(r"\bskopje\b", re.I), "North Macedonia")]
+
+
+def country_from_name(text):
+    """Best-effort country from an institution name, e.g. 'Pontificia Universidad Católica de Chile'."""
+    if re.search(r"new mexico|new england|new jersey", text, re.I):
+        return None
+    for rx, c in NAME_HINTS:
+        if rx.search(text):
+            return c
+    m = COUNTRY_IN_NAME_RE.search(text)
+    if m:
+        for c in COUNTRY_REGION:
+            if c.lower() == m.group(1).lower():
+                return c
+    return None
+
+
 def dept_class(dept_text):
     if not dept_text:
         return "unknown"
@@ -199,6 +230,8 @@ def parse_affiliation(aff):
             inst = "%s %s" % (inst, nxt)
     if inst.lower() in AMBIGUOUS_SYSTEMS:
         return None
+    if country is None:
+        country = country_from_name(", ".join(segs))
     # Hong Kong and Macau institutions are often written as "..., Hong Kong, China".
     if country == "China" and HK_NAMES_RE.search(aff) and not re.search(r"shenzhen|guangzhou", inst, re.I):
         country = "Hong Kong"

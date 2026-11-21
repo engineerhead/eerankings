@@ -33,7 +33,10 @@
     if (params.has("from")) state.from = clampYear(+params.get("from"));
     if (params.has("to")) state.to = clampYear(+params.get("to"));
     if (state.from > state.to) { var t = state.from; state.from = state.to; state.to = t; }
-    if (params.has("region")) state.region = params.get("region");
+    if (params.has("country")) state.region = "c:" + params.get("country");
+    else if (params.has("region")) state.region = params.get("region");
+    if (state.region === "usa") state.region = "c:USA";
+    if (state.region === "canada") state.region = "c:Canada";
     if (params.has("dept")) state.dept = params.get("dept");
     return "rank";
   }
@@ -44,9 +47,34 @@
     if (!isDefault) p.set("areas", state.areas.size ? data.areaIds.filter(function (id) { return state.areas.has(id); }).join(",") : "none");
     p.set("from", state.from);
     p.set("to", state.to);
-    if (state.region !== "world") p.set("region", state.region);
+    if (state.region.slice(0, 2) === "c:") p.set("country", state.region.slice(2));
+    else if (state.region !== "world") p.set("region", state.region);
     if (state.dept !== "eeplus") p.set("dept", state.dept);
     history.replaceState(null, "", "#" + p.toString());
+  }
+
+  // ---------- Region / country selector ----------
+  var REGION_NAMES = [["northamerica", "North America"], ["europe", "Europe"], ["asia", "Asia"],
+    ["australasia", "Australasia"], ["southamerica", "Latin America"], ["africa", "Africa"]];
+
+  function renderRegionOptions() {
+    // Countries come from the data, grouped under their region and sorted alphabetically.
+    var byRegion = {};
+    data.institutions.forEach(function (inst) {
+      if (!inst[1]) return;
+      (byRegion[inst[2]] || (byRegion[inst[2]] = {}))[inst[1]] = true;
+    });
+    var html = '<option value="world">World</option><optgroup label="Regions">';
+    REGION_NAMES.forEach(function (r) { html += '<option value="' + r[0] + '">' + esc(r[1]) + "</option>"; });
+    html += "</optgroup>";
+    REGION_NAMES.concat([["other", "Other"]]).forEach(function (r) {
+      var countries = Object.keys(byRegion[r[0]] || {}).sort(function (a, b) { return a.localeCompare(b); });
+      if (!countries.length) return;
+      html += '<optgroup label="' + esc(r[1]) + '">';
+      countries.forEach(function (c) { html += '<option value="c:' + esc(c) + '">' + esc(c) + "</option>"; });
+      html += "</optgroup>";
+    });
+    $("#region").innerHTML = html;
   }
 
   // ---------- Areas panel ----------
@@ -190,7 +218,9 @@
     $("#to").innerHTML = years;
     $("#from").value = state.from;
     $("#to").value = state.to;
+    renderRegionOptions();
     $("#region").value = state.region;
+    if ($("#region").value !== state.region) { state.region = "world"; $("#region").value = "world"; }
     $("#dept").value = state.dept;
     $("#generated").textContent = "Data generated " + data.generated + " · " + data.authors.length.toLocaleString() + " faculty · " + data.institutions.length.toLocaleString() + " institutions";
 

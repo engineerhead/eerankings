@@ -85,6 +85,14 @@ class AffiliationTests(unittest.TestCase):
         self.assertEqual(norm_key("Chinese University of Hong Kong (Shenzhen)"),
                          "chinese university hong kong shenzhen")
 
+    def test_country_inference(self):
+        self.check("Pontificia Universidad Católica de Chile", "Pontificia Universidad Católica de Chile", "Chile", "unknown")
+        self.check("Carnegie Mellon University Qatar", "Carnegie Mellon University Qatar", "Qatar", "unknown")
+        self.check("University of Bahrain, Isa Town, Bahrain", "University of Bahrain", "Bahrain", "unknown")
+        self.check("Universidad Nacional Autónoma de México, México", "Universidad Nacional Autónoma de México", "Mexico", "unknown")
+        r = parse_affiliation("New Mexico State University, Las Cruces")
+        self.assertNotEqual(r["country"], "Mexico")
+
     def test_norm_key(self):
         self.assertEqual(norm_key("University of Illinois at Urbana-Champaign"),
                          norm_key("University of Illinois Urbana-Champaign"))

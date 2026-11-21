@@ -135,7 +135,15 @@ def main():
     overrides = {r["name"].strip(): r for r in read_csv(os.path.join(ROOT, "data", "faculty-overrides.csv"))}
 
     # --- select faculty -------------------------------------------------------------------
+    # Country votes per institution from every DBLP affiliation (not just selected faculty), so that
+    # bare affiliations like "Stockholm University" inherit the country others give for it.
     name_countries = collections.defaultdict(collections.Counter)
+    for person in people.values():
+        for aff in person["aff"]:
+            parsed_any = parse_affiliation(aff["a"])
+            if parsed_any and parsed_any["country"]:
+                key_any = norm_key(inst_alias.get(norm_key(parsed_any["institution"]), parsed_any["institution"]))
+                name_countries[key_any][parsed_any["country"]] += 1
     faculty = []
     stats = collections.Counter()
     candidates = set(pubs.keys()) | set(overrides.keys())
@@ -184,8 +192,6 @@ def main():
                 continue
         canon = inst_alias.get(norm_key(parsed["institution"]), parsed["institution"])
         name_key = norm_key(canon)
-        if parsed["country"]:
-            name_countries[name_key][parsed["country"]] += 1
         home, orcid, scholar = pick_urls(person["url"] if person else [])
         if ov and ov.get("homepage"):
             home = ov["homepage"]

@@ -17,8 +17,10 @@
 
   function regionAllowed(inst, region) {
     // inst = [name, country, region, homepage]
+    // region is "world", a region id ("europe"), or "c:<Country>" for a single country.
     if (!region || region === "world") return true;
-    if (region === "usa") return inst[1] === "USA";
+    if (region.slice(0, 2) === "c:") return inst[1] === region.slice(2);
+    if (region === "usa") return inst[1] === "USA"; // legacy links
     if (region === "canada") return inst[1] === "Canada";
     return inst[2] === region;
   }

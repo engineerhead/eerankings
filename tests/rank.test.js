@@ -36,7 +36,10 @@ test("department and region filters", () => {
   assert.ok(Math.abs(alpha.areaTotals[1] - 3.5) < 1e-9);
   const eu = computeRanking(data, opts({ region: "europe" }));
   assert.deepStrictEqual(eu.map((x) => x.inst[0]), ["Beta U"]);
-  const us = computeRanking(data, opts({ region: "usa", from: 2000, dept: "ee" }));
+  const de = computeRanking(data, opts({ region: "c:Germany" }));
+  assert.deepStrictEqual(de.map((x) => x.inst[0]), ["Beta U"]);
+  assert.strictEqual(computeRanking(data, opts({ region: "c:France" })).length, 0);
+  const us = computeRanking(data, opts({ region: "c:USA", from: 2000, dept: "ee" }));
   assert.deepStrictEqual(us.map((x) => x.inst[0]), ["Alpha U"]);
 });
 
